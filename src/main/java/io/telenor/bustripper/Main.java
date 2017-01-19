@@ -20,6 +20,9 @@ public class Main {
 
             @Override
             public synchronized void gotTrips(Set<BusTrip> trips, boolean done) {
+                if(this.done){
+                    return;
+                }
                 allTrips.addAll(trips);
 
                 if(done || allTrips.size() >= maxtrips) {
@@ -61,7 +64,7 @@ public class Main {
                     System.out.print("> ");
                     try {
                         String searchterm = in.readLine();
-                        if("q" == searchterm || searchterm.length() == 0) {
+                        if("q".equals(searchterm) || searchterm.length() == 0) {
                             System.exit(0);
                         }
                         System.out.println("Looking up " + searchterm);
